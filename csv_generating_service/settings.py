@@ -1,6 +1,8 @@
 import environ
 import os
 
+import accounts.apps
+
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
@@ -35,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "app.apps.AppConfig",
+    "accounts.apps.AccountsConfig",
 ]
 
 MIDDLEWARE = [
@@ -52,7 +55,7 @@ ROOT_URLCONF = "csv_generating_service.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, "templates")],
+        "DIRS": [(os.path.join(BASE_DIR, 'templates')),],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
