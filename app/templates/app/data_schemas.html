@@ -23,6 +23,16 @@
             </tr>
             </thead>
             <tbody>
+            {% for item in query %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td><a href="/data-sets/{{ item.id }}">{{ item.schema_name }}</a></td>
+                    <td>{{ item.updated_time }}</td>
+                    <td>
+                        <a class="delete-link" href="{% url 'delete_schema' item.id %}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
             </tbody>
         </table>
     </div>

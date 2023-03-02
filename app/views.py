@@ -66,3 +66,31 @@ def add_new_schema(request):
         )
         new_column.save()
     return redirect("/data-schemas")
+
+
+@login_required(login_url="/auth/login/")
+def edit_schema(request, id):
+    context = {}
+    form_column_schema = SchemaColumnsForm()
+    form_basic_schema_info = SchemaBasicInfoForm()
+    req_user = request.user
+    columns = SchemaColumns.objects.filter(schema__id=id)
+    query = SchemaBasicInfo.objects.get(id=id)
+    context["request_user"] = req_user
+    context["query"] = query
+    context["columns"] = columns
+    context["form_column_schema"] = form_column_schema
+    context["form_basic_schema_info"] = form_basic_schema_info
+    return render(request, "app/edit_schema.html", context=context)
+
+
+@login_required(login_url="/auth/login/")
+def delete_schema(request, id):
+    query = SchemaBasicInfo.objects.get(id=id)
+    query.delete()
+    return redirect("/data-schemas")
+
+
+@login_required(login_url="/auth/login/")
+def data_sets(request, id):
+    pass
