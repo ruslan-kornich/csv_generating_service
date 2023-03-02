@@ -91,6 +91,41 @@ def delete_schema(request, id):
     return redirect("/data-schemas")
 
 
+def update_schema(request, id):
+    schema_name = request.POST.get("schema_name")
+    column_separator = request.POST.get("column_separator")
+    string_character = request.POST.get("string_character")
+
+    name_column = request.POST.getlist("name_column")
+    column_type = request.POST.getlist("column_type")
+    int_from = request.POST.getlist("int_from")
+    int_to = request.POST.getlist("int_to")
+    sentences_number = request.POST.getlist("sentences_number")
+    order = request.POST.getlist("order")
+
+    schema = SchemaBasicInfo.objects.get(id=id)
+    schema.schema_name = (str(schema_name),)
+    schema.column_separator = (column_separator,)
+    schema.string_character = (string_character,)
+    schema.save()
+
+    columns = SchemaColumns.objects.filter(schema=schema)
+    for column in columns:
+        column.delete()
+    for item in range(0, len(name_column)):
+        new_column = SchemaColumns.objects.create(
+            schema=schema,
+            column_name=name_column[item],
+            column_type=column_type[item],
+            int_from=int_from[item],
+            int_to=int_to[item],
+            sentences_number=sentences_number[item],
+            order=order[item],
+        )
+        new_column.save()
+    return redirect("/data-schemas")
+
+
 @login_required(login_url="/auth/login/")
 def data_sets(request, id):
     pass
