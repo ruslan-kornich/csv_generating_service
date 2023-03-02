@@ -12,16 +12,16 @@ env = environ.Env(
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Take environment variables from .env file
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = env("DEBUG")
 
 
 ALLOWED_HOSTS = []
@@ -55,7 +55,9 @@ ROOT_URLCONF = "csv_generating_service.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [(os.path.join(BASE_DIR, 'templates')),],
+        "DIRS": [
+            (os.path.join(BASE_DIR, "templates")),
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
