@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Data Schema
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <div class="schema-header">
+            <span><b>DATA SCHEMAS</b> </span>
+            <a class="new-schema-button" href="{% url 'new_schema' %}">
+                <button type="button" class="btn btn-success">New Schema</button>
+            </a>
+        </div>
+        <table class="table">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Modified</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -23,7 +23,7 @@ class LoginView(View):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return redirect("index")
+                    return redirect("/data-schemas")
                 else:
                     error = "Your account is not active."
             else:

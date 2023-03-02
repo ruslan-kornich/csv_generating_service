@@ -68,9 +68,7 @@ class SchemaColumns(BaseModel):
 class DataSets(BaseModel):
     STATUS_CHOICES = (("ready", "ready"), ("process", "processing"))
     schema = models.ForeignKey(SchemaBasicInfo, on_delete=models.CASCADE, null=True)
-    status = models.CharField(
-        max_length=11, choices=STATUS_CHOICES, default="In process"
-    )
+    status = models.CharField(max_length=11, choices=STATUS_CHOICES, default="process")
     csv_file = models.CharField(max_length=300, default="", null=True)
     rows_number = models.PositiveIntegerField(default=0, null=True)
     task_id = models.CharField(max_length=300, default="", null=True)
