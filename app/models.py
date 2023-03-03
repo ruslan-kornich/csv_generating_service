@@ -1,6 +1,12 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
+from app.services.data_choices import (
+    SEPARATOR_CHOICES,
+    STRING_CHARACTER_CHOICES,
+    TYPE_CHOICES,
+    STATUS_CHOICES,
+)
 
 
 class BaseModel(models.Model):
@@ -12,20 +18,6 @@ class BaseModel(models.Model):
 
 
 class SchemaBasicInfo(BaseModel):
-    SEPARATOR_CHOICES = (
-        (",", "Comma(,)"),
-        ("|", "Forward slash (|)"),
-        (";", "Semicolon(;)"),
-    )
-
-    STRING_CHARACTER_CHOICES = (
-        ('"', 'Double-quote(")'),
-        ("'", "Single-quote(')"),
-        ("'''", "Triple-quote(''')"),
-        ('"""', 'Triple-quote(""")'),
-        ("()", "Bracket(())"),
-        ("[]", "Straight Brackets([])"),
-    )
     schema_name = models.CharField(max_length=20, null=True)
     column_separator = models.CharField(
         max_length=15, choices=SEPARATOR_CHOICES, default=";"
@@ -40,17 +32,6 @@ class SchemaBasicInfo(BaseModel):
 
 
 class SchemaColumns(BaseModel):
-    TYPE_CHOICES = (
-        ("full_name", "Full Name"),
-        ("company", "Company"),
-        ("address", "Address"),
-        ("job", "Job"),
-        ("email", "Email"),
-        ("phone", "Phone"),
-        ("text", "Text"),
-        ("int", "Integer"),
-        ("date", "Date"),
-    )
     column_name = models.CharField(max_length=20, default="", null=True)
     column_type = models.CharField(
         max_length=10, choices=TYPE_CHOICES, default="full_name"
@@ -66,7 +47,6 @@ class SchemaColumns(BaseModel):
 
 
 class DataSets(BaseModel):
-    STATUS_CHOICES = (("ready", "ready"), ("process", "processing"))
     schema = models.ForeignKey(SchemaBasicInfo, on_delete=models.CASCADE, null=True)
     status = models.CharField(max_length=11, choices=STATUS_CHOICES, default="process")
     csv_file = models.CharField(max_length=300, default="", null=True)

@@ -12,23 +12,25 @@ const columnItem = document.querySelector('.column-item')
 const submitBtn = document.querySelector('#submit_btn')
 
 
-if (columnType.value == "full_name") {
+if(columnType.value=="full_name"){
     intFromDiv.style.display = "none"
     intToDiv.style.display = "none"
     sentencesNumberDiv.style.display = "none"
 }
 
 columnType.addEventListener('change', () => {
-    if (columnType.value != "int") {
+    if (columnType.value!="int"){
         intFromDiv.style.display = "none"
         intToDiv.style.display = "none"
-    } else {
+}
+    else {
         intFromDiv.style.display = "block"
         intToDiv.style.display = "block"
     }
-    if (columnType.value != "text") {
+    if (columnType.value!="text"){
         sentencesNumberDiv.style.display = "none"
-    } else {
+}
+    else {
         sentencesNumberDiv.style.display = "block"
     }
 })
@@ -40,12 +42,12 @@ console.log(arr)
 
 const addPerson = () => {
     const data = {
-        'name': nameInput.value,
-        'columnType': columnType.value,
-        'intFrom': intFrom.value,
-        'intTo': intTo.value,
-        'sentencesNumber': sentencesNumber.value,
-        'order': order.value
+        'name':nameInput.value,
+        'columnType':columnType.value,
+        'intFrom':intFrom.value,
+        'intTo':intTo.value,
+        'sentencesNumber':sentencesNumber.value,
+        'order':order.value
     }
 
     arr.push(data)

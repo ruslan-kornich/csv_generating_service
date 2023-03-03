@@ -7,7 +7,7 @@
 
 {% block content %}
     <div class="container">
-        <form method="POST" action="{% url 'updating_schema' query.id %}" class="">
+        <form method="POST" action="{% url 'update_schema' query.id %}" class="">
             {% csrf_token %}
             <div class="schema-header">
                 <span><h5><b>New Scheme</b></h5> </span>
